@@ -26,4 +26,5 @@ def pascal_triangle(n):
             right += 1
             in_pas.append(num)
         pascal.append(in_pas)
-    return 
+    return pascal
+
