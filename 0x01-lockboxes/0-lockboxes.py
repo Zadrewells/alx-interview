@@ -1,19 +1,32 @@
 #!/usr/bin/python3
+'''LockBoxes Challenge'''
 
 
 def canUnlockAll(boxes):
-    """Unlock array of boxes of keys with indices"""
-    size = len(boxes)
-    checker = {}
-    index = 0
+    '''determines if all the boxes can be opened or not
+    Returns:
+        True: all boxes can be opened
+        False: not all boxes can be opened
+    '''
+    length = len(boxes)
+    keys = set()
+    opened_boxes = []
+    i = 0
 
-    for keys in boxes:
-        if len(keys) == 0 or index == 0:
-            checker[index] = -1  # -1 means box is empty
+    while i < length:
+        oldi = i
+        opened_boxes.append(i)
+        keys.update(boxes[i])
         for key in keys:
-                if key < size and key != index:
-                    checker[key] = key
-        if len(checker) == size:
-            return True
-        index += 1
-    return False
+            if key != 0 and key < length and key not in opened_boxes:
+                i = key
+                break
+        if oldi != i:
+            continue
+        else:
+            break
+
+    for i in range(length):
+        if i not in opened_boxes and i != 0:
+            return False
+    return True
